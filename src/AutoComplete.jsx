@@ -13,11 +13,14 @@ function AutoComplete() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/auto-complete", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sentence: text }),
-      });
+      const response = await fetch(
+        "https://grammar-correction-and-sentence-building.onrender.com/auto-complete",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sentence: text }),
+        }
+      );
       const data = await response.json();
       let newData = data.completedSentence.replace(/```json|```/g, "").trim();
       newData = JSON.parse(newData);
