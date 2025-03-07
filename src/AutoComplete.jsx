@@ -44,14 +44,14 @@ function AutoComplete() {
   };
 
   const handleSuggestionClick = (suggestedText) => {
-    setInput((prevInput) => `${prevInput} ${suggestedText}`);
+    setInput((prevInput) => `${prevInput}${suggestedText}`);
     setSuggestion([]);
   };
 
   return (
     <div className="p-4 flex flex-col items-center">
       <motion.h1
-        className="text-xl font-normal text-white mb-4"
+        className="text-xl font-semibold text-white mb-8"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
@@ -63,7 +63,7 @@ function AutoComplete() {
         value={input}
         onChange={handleInputChange}
         placeholder="Start typing..."
-        className="border border-zinc-700 w-2xl mt-2 py-3 px-4 rounded-lg text-white bg-zinc-900 text-sm hover:ring-1 ring-offset-2 ring-offset-zinc-800 focus:ring-1 focus:outline-none ring-purple-500"
+        className="border border-zinc-700/40 w-full md:w-2xl mt-2 py-3 px-4 rounded-lg text-white bg-zinc-900/40 text-sm hover:ring-1 ring-offset-2 ring-offset-zinc-800 focus:ring-1 focus:outline-none ring-purple-500"
         initial={{ y: 0, opacity: 1 }}
         animate={{ y: suggestion.length > 0 ? -15 : 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 120, damping: 12 }}
@@ -71,7 +71,7 @@ function AutoComplete() {
       <AnimatePresence>
         {suggestion.length > 0 && (
           <motion.div
-            className="w-2xl bg-zinc-900 mt-4 rounded-lg shadow-lg p-4 border border-zinc-800"
+            className="w-full md:w-2xl bg-zinc-900/80 mt-4 rounded-lg shadow-lg p-4 border border-zinc-800"
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
@@ -80,7 +80,7 @@ function AutoComplete() {
             {suggestion.map((suggest, i) => (
               <motion.p
                 key={i}
-                className="text-gray-400 text-sm py-2 px-2 hover:bg-zinc-800 rounded cursor-pointer transition-colors duration-200"
+                className="text-gray-200 text-sm py-2 px-2 hover:bg-zinc-800 rounded cursor-pointer transition-colors duration-200"
                 whileHover={{ scale: 1.02, backgroundColor: "#27272a" }}
                 onClick={() =>
                   handleSuggestionClick(
